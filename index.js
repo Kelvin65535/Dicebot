@@ -1,9 +1,5 @@
 // 使用jQuery在DOM加载完成后的回调函数
 $(function () {
-	$('.js-confirm').click(function () {
-		alert("ffff");
-	});
-
 	// 基本的'item'模型包含total，rolls和info
 	var item = Backbone.Model.extend({
 		// 对象的默认属性
@@ -19,15 +15,15 @@ $(function () {
 		model: item
 	});
 
-	var list = new itemList;
+	var list = new itemList; //创建collection的实例
 
+	// 将列表视图从主视图分离
 	var listView = Backbone.View.extend({
-		//tagName: "li",
 
-		template: _.template($('#item-template').html()),
+		template: _.template($('#item-template').html()), //读取script标签上的模板
 
 		initialize: function () {
-			this.listenTo(this.model, 'change', this.render);
+			this.listenTo(this.model, 'change', this.render); //响应模型的change事件，渲染该模型的数据到li中
 		},
 
 		// 渲染数据到li中，然后返回对自己的引用this
@@ -50,7 +46,7 @@ $(function () {
 
 		// 在初始化函数中绑定collection的事件
 		initialize: function () {
-			this.listenTo(list, 'add', this.addOne);
+			this.listenTo(list, 'add', this.addOne); //当集合产生add事件时渲染列表视图，增加一条记录
 		},
 
 		roll: function () {
@@ -64,11 +60,10 @@ $(function () {
 				res.push(j);
 				total += j;
 			};
-			console.log(res);
-			console.log(total);
 
 			var listRolls = res.join(" ");
-			var listDice = dice + "D" + side;
+			var listDice = dice + "D" + side; // 生成类似100D5的字符串
+			// 为collection增加一条记录
 			list.create({
 				total: total,
 				rolls: listRolls,
@@ -76,6 +71,7 @@ $(function () {
 			});
 		},
 
+		// 向列表视图增加一条记录
 		addOne: function (item) {
 			var view = new listView({model: item});
 			this.$("#list").prepend(view.render().el);
