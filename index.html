@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dicebot</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+</head>
+<body>
+
+<div class="page-header" style="text-align: center">
+	<h1>Roll a dice!</h1>
+</div>
+
+<div class="container" id="App">
+	<div class="row">
+		<div class="from-horizontal" style="text-align: center" >
+			<div class="from-group col-md-4 col-sm-6">
+				<label for="sides" class="col-md-2 col-xs-2 control-label">sides: </label>
+				<div class="col-md-10 col-xs-10">
+					<select class="form-control" id="sides">
+						<option selected="selected" value="100">100</option>
+						<option value="20">20</option>
+						<option value="12">12</option>
+						<option value="10">10</option>
+						<option value="8">8</option>
+						<option value="6">6</option>
+						<option value="4">4</option>
+					</select>
+				</div>
+			</div>
+			<div class="from-group col-md-4 col-sm-6">
+				<label for="dice" class="col-md-2 col-xs-2 control-label">dice: </label>
+				<div class="col-md-10 col-xs-10">
+					<select class="form-control" id="dice">
+						<option selected="selected" value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<button class="btn btn-primary btn-block js-roll">Roll!</button>
+			</div>
+		</div>
+	</div>
+	
+	<br>
+	<div class="panel panel-default">
+		<div class="panel-heading">历史记录</div>
+		<div class="panel-body">
+		</div>
+		<ul class="list-group" id="list"></ul>
+	</div>
+</div>
+</body>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://apps.bdimg.com/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="http://apps.bdimg.com/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script src="index.js"></script>
+<script type="text/template" id="item-template">
+<li class="list-group-item">
+	<div class="row">
+		<div class="col-md-4 col-xs-4">
+			<p class="text-left">Total: <%- total %></p>
+		</div>
+		<div class="col-md-4 col-xs-4">
+			<p class="text-center"><%- dice %></p>
+		</div>
+		<div class="col-md-4 col-xs-4">
+			<p class="text-right">Rolls: <%- rolls %></p>
+		</div>
+	</div>
+</li>
+</script>
+</html>
